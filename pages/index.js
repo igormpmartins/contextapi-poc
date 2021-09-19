@@ -6,6 +6,7 @@ import SignIn from './SignIn'
 
 import { ModeContext, ModeProvider, useMode } from '../lib/ModeContext'
 import { ThemeProvider, useTheme } from '../lib/ThemeContext'
+import { AuthProvider } from '../lib/AuthContext'
 
 /*
 const MyComp = () => {
@@ -52,23 +53,24 @@ const ThemeSwitcher = () => {
 }
 
 const Index = () =>   {
-  const mode = useMode()
+  //const mode = useMode()
 
   return (
       <ModeProvider>
         <ThemeProvider>
-          <ModeSwitcher />
-          <ThemeSwitcher />
-          <div className="App">
-            <h1>DevPleno LiveClass</h1>
-            {/*<MyComp /> */ }
-            
-            <Router>
-              <Route path="/" component={SignIn} exact />
-              <Route path="/app" component={Private} />
-            </Router>
-          </div>
-        
+          <AuthProvider>
+            <ModeSwitcher />
+            <ThemeSwitcher />
+            <div className="App">
+              <h1>DevPleno LiveClass</h1>
+              {/*<MyComp /> */ }
+              
+              <Router>
+                <Route path="/" component={SignIn} exact />
+                <Route path="/app" component={Private} />
+              </Router>
+            </div>
+          </AuthProvider>
         </ThemeProvider>
       </ModeProvider>
   )

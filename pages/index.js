@@ -52,27 +52,37 @@ const ThemeSwitcher = () => {
 
 }
 
+//podemos centralizar tudo em um único componente!
+
+const Providers = ({children}) => {
+  return (
+    <ModeProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
+      </ThemeProvider>
+    </ModeProvider>
+  )
+}
+
 const Index = () =>   {
   //const mode = useMode()
 
   return (
-      <ModeProvider>
-        <ThemeProvider>
-          <AuthProvider>
-            <ModeSwitcher />
-            <ThemeSwitcher />
-            <div className="App">
-              <h1>DevPleno LiveClass</h1>
-              {/*<MyComp /> */ }
-              
-              <Router>
-                <Route path="/" component={SignIn} exact />
-                <Route path="/app" component={Private} />
-              </Router>
-            </div>
-          </AuthProvider>
-        </ThemeProvider>
-      </ModeProvider>
+      <Providers>
+        <ModeSwitcher />
+        <ThemeSwitcher />
+        <div className="App">
+          <h1>DevPleno LiveClass</h1>
+          {/*<MyComp /> */ }
+          
+          <Router>
+            <Route path="/" component={SignIn} exact />
+            <Route path="/app" component={Private} />
+          </Router>
+        </div>
+      </Providers>
   )
 }
 
